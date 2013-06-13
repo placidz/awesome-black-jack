@@ -16,6 +16,15 @@ public:
 	};
 
 	virtual PlayerAction play() = 0;
+	void addCard(Card* c)
+	{
+		m_cards.append(c);
+	}
+
+	QList<Card*> getCards()
+	{
+		return m_cards;
+	}
 
 protected:
 
