@@ -18,7 +18,9 @@ INCLUDEPATH += include/
 
 SOURCES += main.cpp \
 src/Card.cpp \
-src/Deck.cpp
+src/Deck.cpp \
+src/BJConsoleView.cpp
 
 HEADERS += include/Card.h \
-include/Deck.h
+include/Deck.h \
+include/BJConsoleView.h
