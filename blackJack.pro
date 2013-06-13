@@ -20,9 +20,14 @@ SOURCES += main.cpp \
 src/Card.cpp \
 src/Deck.cpp \
 src/BJConsoleView.cpp \
-src/bjapplication.cpp
+src/bjapplication.cpp \
+src/BJHumanPlayer.cpp \
+src/BJComputerPlayer.cpp
 
 HEADERS += include/Card.h \
 include/Deck.h \
 include/BJConsoleView.h \
-include/bjapplication.h
+include/bjapplication.h \
+include/BJPlayerInt.h \
+include/BJHumanPlayer.h \
+include/BJComputerPlayer.h
