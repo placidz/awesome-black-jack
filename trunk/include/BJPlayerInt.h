@@ -26,6 +26,14 @@ public:
 		return m_cards;
 	}
 
+	int computeScore()
+	{
+		int sum = 0;
+		for( int i = 0 ; i < m_cards.count() ; ++i )
+			sum += m_cards[i]->getValue();
+		return sum;
+	}
+
 protected:
 
 	QList<Card*> m_cards;
