@@ -15,4 +15,9 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+src/Card.h \
+src/Deck.h
+
+HEADERS += include/Card.h \
+include/Deck.h
