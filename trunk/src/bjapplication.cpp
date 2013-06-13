@@ -1,8 +1,9 @@
-#include "bjackapplication.h"
+#include "bjapplication.h"
+
 
 BJackApplication::BJackApplication(int argc, char *argv[]) : QCoreApplication(argc, argv) {
-
+	
 }
 
-virtual ~BJackApplication::BJackApplication() {
+BJackApplication::~BJackApplication() {
 }
