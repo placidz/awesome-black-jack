@@ -4,11 +4,13 @@
 #include <iostream>
 
 int displaySum(const std::string &name, const QList<int>& l, bool isDealer = false);
-int getCard();
+int getCard(const QList<int>& listing, const QList<int>& listing2);
 int getSum(const QList<int>& l);
 std::string cardValueToStr(int value);
 void blackJack();
 void casino();
+void sexy() ;
+void getout();
 
 int main(int argc, char *argv[])
 {
@@ -23,10 +25,10 @@ int main(int argc, char *argv[])
 		bool finished = false;
 		QList<int> player;
 		QList<int> dealer;
-		player.append(getCard());
-		player.append(getCard());
-		dealer.append(getCard());
-		dealer.append(getCard());
+		player.append(getCard(player, dealer));
+		player.append(getCard(player, dealer));
+		dealer.append(getCard(player, dealer));
+		dealer.append(getCard(player, dealer));
 		casino();
 		std::cout << "Oi e bem-vindo Alex ao Super Blackjack !!!" << std::endl << "Your amount of money: " << playerMoney << std::endl << std::endl;
 		int dealerSum = 0;
@@ -49,15 +51,15 @@ int main(int argc, char *argv[])
 				else if( c == 'D' || c == 'd' )
 				{
 					betFactor = 2;
-					player.append(getCard());
+					player.append(getCard(player, dealer));
 				}
 				else
-					player.append(getCard());
+					player.append(getCard(player, dealer));
 			}
 		}
 		while( (playerSum < 22 && dealerSum <= playerSum) && playerSum != 21 )
 		{
-			dealer.append(getCard());
+			dealer.append(getCard(player, dealer));
 			dealerSum = getSum(dealer);
 		}
 
@@ -104,8 +106,13 @@ int main(int argc, char *argv[])
 			
 		}
 
-		if( playerMoney <= 0 )
+		if( playerMoney > 150 )
+			sexy();
+
+		if( playerMoney <= 0 ) {
+			getout();
 			std::cout << std::endl << "You don't have money anymore! Out of the CASINO!" << std::endl << std::endl;
+		}
 
 		system("PAUSE");
 		system("CLS");
@@ -162,21 +169,34 @@ int getSum(const QList<int>& l)
 	return sum;
 }
 
-int getCard()
+int getCard(const QList<int>& listing, const QList<int>& listing2)
 {
+	int res;
 	if( qrand() % 4 == 0 )
-		return qrand() % 3 + 12;
+		res = qrand() % 3 + 12;
+	else
+		res = qrand() % 10 + 1;
 
-	return qrand() % 10 + 1;
+	int count(0);
+	for(int i = 0; i < listing.count();++i)
+		if(listing[i] == res)
+			++count;
+	for(int i = 0; i < listing2.count();++i)
+		if(listing2[i] == res)
+			++count;
+	if(count < 4)
+		return res;
+	else
+		return getCard(listing, listing2);
 }
 
 std::string cardValueToStr(int value) {
 	switch (value)
 	{
-	case 1: return "A";
-	case 12: return "J";
-	case 13: return "Q";
-	case 14: return "K";
+	case 1: return "Ace";
+	case 12: return "Jack";
+	case 13: return "Queen";
+	case 14: return "King";
 	default: {
 		char v[2];
 		_itoa(value, v, 10);
@@ -229,5 +249,104 @@ void casino() {
 	std::cout << "                              #Q     O0 _*B& m   &8 0_w #F  aM,/D  _#`      " << std::endl;
 	std::cout << "                               #&,   `~^  ~~ `~ ~~  ^`  ^   ~'   '+^        " << std::endl;
 	std::cout << "                                 ~~'*+^                                     " << std::endl;                          
+	std::cout <<  std::endl;
+}
+
+void getout() {
+	system("CLS");
+	std::cout <<  std::endl;
+	std::cout << "                   _,pmNM0MQqgpq@              " << std::endl;                                 
+	std::cout << "               ,__#M~     _pNMPM0Mg_             " << std::endl;                               
+	std::cout << "               ~0MMg  M&m00Zpggp,_ZM0p,            " << std::endl;                             
+	std::cout << "               #' _#M  ~`4000````~_BM^~#g         " << std::endl;                              
+	std::cout << "              0N0F~Bf     `7N000MMM'    ~0g      " << std::endl;                               
+	std::cout << "             #&0M_mF                      ^Q,    " << std::endl;                               
+	std::cout << "            j'MMP~   __gpgxawmpqg__         4g   " << std::endl;                               
+	std::cout << "           ,X     _pMM~`__       ~~']f       ~6  " << std::endl;                               
+	std::cout << "           0     g#`qpM0M~~         ~         M,  " << std::endl;                              
+	std::cout << "           #    0~ M~`                         #  " << std::endl;                              
+	std::cout << "           &   pX                              #  " << std::endl;                              
+	std::cout << "           #   ~                               #  " << std::endl;                              
+	std::cout << "           #                                   &   " << std::endl;                             
+	std::cout << "           Q                                  #^   " << std::endl;                             
+	std::cout << "           ]&                                jP    " << std::endl;                             
+	std::cout << "            #                               g@     " << std::endl;                             
+	std::cout << "            ]&                            _0'      " << std::endl;                             
+	std::cout << "             4p                         ,g@                      _ppgpgg&m***=" << std::endl; 
+	std::cout << "              46              _ppggpggqN0&pppggpppgg0N00NN00N000MM0N00M       " << std::endl;  
+	std::cout << "               ~&,            #&~^`,0M~```                       ^0000F    " << std::endl;     
+	std::cout << "                `M&g_        j0Lg0M~                                ` " << std::endl;          
+	std::cout << "                   ^7MMNMN0MN00F^                      " << std::endl;                         
+	std::cout << "                            gP0                       " << std::endl;                          
+	std::cout << "                           qP 0                       " << std::endl;                          
+	std::cout << "                          ##  #                       " << std::endl;                          
+	std::cout << "                        _0F  ]#                       " << std::endl;                          
+	std::cout << "                       p0^   #'                      " << std::endl;                           
+	std::cout << "                      #@     0                      " << std::endl;                            
+	std::cout << "                    y#!     ]0                       " << std::endl;                           
+	std::cout << "                   pM`      0T                     " << std::endl;                             
+	std::cout << "                _g0P        0                       " << std::endl;                            
+	std::cout << "             _g00M         j@                   " << std::endl;                                
+	std::cout << "        _pg00M~            0                 " << std::endl;                                   
+	std::cout << "      g0M~`               j#                  " << std::endl;                                  
+	std::cout << "    ,#V                   Mf                 " << std::endl;                                   
+	std::cout << "   _0M&                  ]#                  " << std::endl;                                   
+	std::cout << "   0M 4g                 0!                  " << std::endl;                                   
+	std::cout << "  ]X]L 0                y0                    " << std::endl;                                  
+	std::cout << "  #  #                  0f                    " << std::endl;                                  
+	std::cout << "                        @                     " << std::endl;  
+	std::cout <<  std::endl;
+}
+
+void sexy() {
+	system("CLS");
+	std::cout <<  std::endl;
+	std::cout << "                      _.`'''`.`.`-.						" << std::endl;
+	std::cout << "                    ,'`,`.`,`'--...;." << std::endl;
+	std::cout << "                   /`.`, ,'` `-'-._ ``." << std::endl;
+	std::cout << "                 ,'` ,;-'  _ ``    ._ `\\" << std::endl;
+	std::cout << "                /` ,;'  ,'', _  ``  `  `\\" << std::endl;
+	std::cout << "              _/`,'' _,' ,'   `.` `  ` `/" << std::endl;
+	std::cout << "              \\_' _,   ,'      | f\\ ` ` |" << std::endl;
+	std::cout << "               `.; ```/         \\| `.`   |" << std::endl;
+	std::cout << "                '.`--'\\  .'`    ;|  |` `/" << std::endl;
+	std::cout << "                  `.  `.  <6    <6   /__/'" << std::endl;
+	std::cout << "                    `- |      (    /-''" << std::endl;
+	std::cout << "                       ;\\   ._.  .`" << std::endl;
+	std::cout << "                  _.--'  `.    ,|--.._" << std::endl;
+	std::cout << "              ,--' ._ ..__ `''` |   :;`-." << std::endl;
+	std::cout << "             /.           `''   !    :;  ;" << std::endl;
+	std::cout << "            /:                        :; |" << std::endl;
+	std::cout << "           /:.                        :; |" << std::endl;
+	std::cout << "          /:.                          :;|" << std::endl;
+	std::cout << "         /:.      ,____        `;.      ;;." << std::endl;
+	std::cout << "        /_.,,,;;;;;;;;;;;;;;::-. \\:.  ,;;;;\\ " << std::endl;
+	std::cout << "       /:```''` /;;;;;;;;;;::::::;\\;,;;;;-' ;" << std::endl;
+		std::cout << "      /:.     ;/;;;;;;;;:::-''-'.-';.'.-'.-.;" << std::endl;
+	std::cout << "     /:.     /  \\;;;;:-'-'.-'.-'.-';.'.-'../" << std::endl;
+	std::cout << "    ;:.     /    \\;;:''.-'.-'.-'.-/.-'.-';'" << std::endl;
+	std::cout << "    |:.    /      \\;:.'.-'.-'.-.-''.-'..|" << std::endl;
+	std::cout << "    |:.   ;        \\::..-'.-'.-'.-'.-'..;" << std::endl;
+	std::cout << "    |:.   |         \\::.-'.-'.-'.-'.-'..;" << std::endl;
+	std::cout << "    ::.   ;          \\::.'.-'.-'.-'.-'.-.;" << std::endl;
+	std::cout << "     \\:.  `\\          ;::..-'.-'.-'.-'.-.|" << std::endl;
+	std::cout << "      \\:.  `\\         |::..-'.-'.-'.-'.-.;" << std::endl;
+	std::cout << "       \\:.  `\\        |::..-'.-'.-'.-'.-.|" << std::endl;
+	std::cout << "        \\:.  `\\       ;::..-'.-'.-'.-'.-.;" << std::endl;
+	std::cout << "         \\:.  '\\     /::.'.-'.-'.-'.-'.-'.;" << std::endl;
+	std::cout << "          \\:.  '\\   /::.-'.-'.-'.-'.-'.-'.|" << std::endl;
+	std::cout << "           \\:.  `\\ /:::.-'.-'.-'.-'.-'.-'.;\\" << std::endl;
+	std::cout << "            \\:.  `;:::..-'.-'.-'.-'.-'.-'.|.;" << std::endl;
+	std::cout << "             ;.    \\:.'.-'.-'.-'.-'.-'.-'.:. ;" << std::endl;
+	std::cout << "             \\:.  `_`):.-'.-'.-'.-'.-'.-'.|. |" << std::endl;
+	std::cout << "             |:. `__):..-'.-'.-'.-'.-'.-'.'.. \\" << std::endl;
+	std::cout << "              \\:.`__):__-'.-'.-'.-'.-'.-'..|.\\ |" << std::endl;
+	std::cout << "               '-._):.  `.._'.-'.-'.-'.-'..\\ \\!|" << std::endl;
+	std::cout << "                   |:.      `''''';;-------;!!/" << std::endl;
+	std::cout << "                   `:.            \\:.     | `'" << std::endl;
+	std::cout << "                    \\:.            \\:.    |" << std::endl;
+	std::cout << "                     \\:.            \\:.   |" << std::endl;
+	std::cout << "                      \\:.            \\:. |" << std::endl;
+	std::cout << "                       \\:.            \\:.|" << std::endl;                                                                      
 	std::cout <<  std::endl;
 }
