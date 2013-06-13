@@ -6,6 +6,7 @@ public:
 
 	enum PlayerAction
 	{
+		None,
 		Hit,
 		Stand
 	};
