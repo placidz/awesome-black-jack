@@ -1,6 +1,11 @@
 #include "BJHumanPlayer.h"
 #include <iostream>
 
+BJHumanPlayer::BJHumanPlayer(const QString &pName)
+{
+	m_playerName = pName;
+}
+
 BJPlayerInt::PlayerAction BJHumanPlayer::play()
 {
 	int action = 0;
