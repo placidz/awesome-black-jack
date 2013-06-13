@@ -1,8 +1,6 @@
 #include "Deck.h"
 
 #include <QCoreApplication>
-#include <cstdlib>
-#include <time.h>
 #include "Card.h"
 
 Deck::Deck()
@@ -74,7 +72,6 @@ void Deck::init()
 
 Card* Deck::getRandomCard()
 {
-	srand(time(NULL));
-	int index = rand() % m_cards.size(); 
+	int index = qrand() % m_cards.size(); 
 	return m_cards.takeAt(index);
 }
