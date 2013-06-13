@@ -1,6 +1,6 @@
 #pragma once
 
-#include <list>
+#include <QList>
 class Card;
 
 class Deck
@@ -11,9 +11,9 @@ public:
 
 	void init();
 
-	Card getRandomCard();
+	Card* getRandomCard();
 
 private:
-	std::list<Card> m_cards;
+	QList<Card*> m_cards;
 };
 
