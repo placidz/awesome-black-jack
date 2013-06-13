@@ -6,6 +6,7 @@
 int displaySum(const std::string &name, const QList<int>& l, bool isDealer = false);
 int getCard();
 int getSum(const QList<int>& l);
+char cardValueToStr(int value);
 
 int main(int argc, char *argv[])
 {
@@ -22,7 +23,7 @@ int main(int argc, char *argv[])
 		dealer.append(getCard());
 		dealer.append(getCard());
 
-		std::cout << "Oi e bem-vindo Alex ao Super Blackjack !!!" << std::endl << std::endl;
+		std::cout << "Oi e bem-vindo ao Super Blackjack !!!" << std::endl << std::endl;
 		int dealerSum = 0;
 		int playerSum = 0;
 		while( !finished )
@@ -99,16 +100,16 @@ int displaySum(const std::string &name, const QList<int>& l, bool isDealer)
 		if( isDealer )
 		{
 			if( i == 0 )
-				std::cout << l[i] << ", ";
+				std::cout << cardValueToStr(l[i]) << ", ";
 			else
 				std::cout << "*";
 		}
 		else
 		{
 			if( i != l.count()-1 )
-				std::cout << l[i] << ", ";
+				std::cout << cardValueToStr(l[i]) << ", ";
 			else
-				std::cout << l[i];
+				std::cout << cardValueToStr(l[i]);
 		}
 	}
 
@@ -123,15 +124,30 @@ int displaySum(const std::string &name, const QList<int>& l, bool isDealer)
 int getSum(const QList<int>& l)
 {
 	int sum = 0;
-	for( int i = 0 ; i < l.count() ; ++i )
-		sum += l[i];
+	for( int i = 0 ; i < l.count() ; ++i ) {
+
+		sum += qMin(l[i], 10);
+	}
 	return sum;
 }
 
 int getCard()
 {
-	if( qrand() % 3 == 0 )
-		return 10;
+	if( qrand() % 4 == 0 )
+		return qrand() % 3 + 12;
 	
-	return qrand() % 8 + 2;
+	return qrand() % 9 + 2;
+}
+
+char cardValueToStr(int value) {
+	if(value < 11)
+		return value + '0';
+	switch (value)
+	{
+	case 12: return 'J';
+	case 13: return 'Q';
+	case 14: return 'K';
+	default:
+		return 'A';
+	}
 }
