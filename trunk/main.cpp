@@ -12,9 +12,12 @@ int main(int argc, char *argv[])
 {
 //    BJackApplication a(argc, argv);
 	qsrand(time(NULL));
+	int playerMoney = 100;
+	int betFactor = 1;
 
-	while (true)
+	while (playerMoney > 0)
 	{
+		betFactor = 1;
 		bool finished = false;
 		QList<int> player;
 		QList<int> dealer;
@@ -23,25 +26,29 @@ int main(int argc, char *argv[])
 		dealer.append(getCard());
 		dealer.append(getCard());
 
-		std::cout << "Oi e bem-vindo ao Super Blackjack !!!" << std::endl << std::endl;
+		std::cout << "Oi e bem-vindo Alex ao Super Blackjack !!!" << std::endl << "Your amount of money: " << playerMoney << std::endl << std::endl;
 		int dealerSum = 0;
 		int playerSum = 0;
 		while( !finished )
 		{
 			dealerSum = displaySum("Dealer", dealer, true);
 			playerSum = displaySum("Player", player);
-			std::cout << std::endl;
 		
-			if( playerSum >= 21 )
+			if( betFactor != 1 || playerSum >= 21 )
 				finished = true;
 			else
 			{
-				std::cout << "H (hit) - S (stand): ";
+				std::cout << "H (hit) - S (stand) - D (double): ";
 				char c;
 				std::cin >> c;
 
 				if( c == 'S' || c == 's' )
 					finished = true;
+				else if( c == 'D' || c == 'd' )
+				{
+					betFactor = 2;
+					player.append(getCard());
+				}
 				else
 					player.append(getCard());
 			}
@@ -61,29 +68,40 @@ int main(int argc, char *argv[])
 		if( playerSum > 21 )
 		{	if( dealerSum == 21 )
 				std::cout << "BLACKJACK !!!" << std::endl;
-			std::cout << "You loose!" << std::endl;
+			playerMoney -= (10*betFactor);
+			std::cout << "You loose! Your amount of money = " << playerMoney << std::endl;
 		}
 		else if( dealerSum > 21 )
 		{
 			if( playerSum == 21 )
 				std::cout << "BLACKJACK !!!" << std::endl;
-			std::cout << "You win!" << std::endl;
+			playerMoney += (10*betFactor);
+			std::cout << "You win! Your amount of money = " << playerMoney << std::endl;
 		}
 		else
 		{
 			if( playerSum == dealerSum )
-				std::cout << "Push!" << std::endl;
+				std::cout << "Push! Your amount of money = " << playerMoney << std::endl;
 			else
 			{
 				if( dealerSum == 21 || playerSum == 21 )
 					std::cout << "BLACKJACK !!!" << std::endl;
 				if( playerSum > dealerSum )
-					std::cout << "You win!" << std::endl;
+				{
+					playerMoney += (10*betFactor);
+					std::cout << "You win! Your amount of money = " << playerMoney << std::endl;
+				}
 				else
-					std::cout << "You loose!" << std::endl;
+				{
+					playerMoney -= (10*betFactor);
+					std::cout << "You loose! Your amount of money = " << playerMoney << std::endl;
+				}
 			}
 			
 		}
+
+		if( playerMoney <= 0 )
+			std::cout << std::endl << "You don't have money anymore! Out of the CASINO!" << std::endl << std::endl;
 
 		system("PAUSE");
 		system("CLS");
@@ -124,10 +142,9 @@ int displaySum(const std::string &name, const QList<int>& l, bool isDealer)
 int getSum(const QList<int>& l)
 {
 	int sum = 0;
-	for( int i = 0 ; i < l.count() ; ++i ) {
-
+	for( int i = 0 ; i < l.count() ; ++i )
 		sum += qMin(l[i], 10);
-	}
+
 	return sum;
 }
 
@@ -135,7 +152,7 @@ int getCard()
 {
 	if( qrand() % 4 == 0 )
 		return qrand() % 3 + 12;
-	
+
 	return qrand() % 9 + 2;
 }
 
