@@ -14,6 +14,7 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
+INCLUDEPATH += include/
 
 SOURCES += main.cpp \
 src/Card.cpp \
