@@ -6,7 +6,7 @@
 int displaySum(const std::string &name, const QList<int>& l, bool isDealer = false);
 int getCard();
 int getSum(const QList<int>& l);
-char cardValueToStr(int value);
+std::string cardValueToStr(int value);
 
 int main(int argc, char *argv[])
 {
@@ -139,15 +139,18 @@ int getCard()
 	return qrand() % 9 + 2;
 }
 
-char cardValueToStr(int value) {
-	if(value < 11)
-		return value + '0';
+std::string cardValueToStr(int value) {
+	if(value < 11) {
+		char v[2];
+		_itoa(value, v, 10);
+		return std::string(v);
+	}
 	switch (value)
 	{
-	case 12: return 'J';
-	case 13: return 'Q';
-	case 14: return 'K';
+	case 12: return "J";
+	case 13: return "Q";
+	case 14: return "K";
 	default:
-		return 'A';
+		return "A";
 	}
 }
