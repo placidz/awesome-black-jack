@@ -6,5 +6,6 @@ class BJComputerPlayer : public BJPlayerInt
 {
 public:
 
+	BJComputerPlayer();
 	BJPlayerInt::PlayerAction play();
 };
