@@ -16,8 +16,8 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-src/Card.h \
-src/Deck.h
+src/Card.cpp \
+src/Deck.cpp
 
 HEADERS += include/Card.h \
 include/Deck.h
