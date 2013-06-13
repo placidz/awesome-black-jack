@@ -21,9 +21,9 @@ void Deck::init()
 	m_cards.push_back(Card(Eight, Diamond));
 	m_cards.push_back(Card(Nine, Diamond));
 	m_cards.push_back(Card(Ten, Diamond));
-	m_cards.push_back(Card(Jack, Diamond));
-	m_cards.push_back(Card(Queen, Diamond));
-	m_cards.push_back(Card(King, Diamond));
+	m_cards.push_back(Card(Jack, Diamond, 10));
+	m_cards.push_back(Card(Queen, Diamond, 10));
+	m_cards.push_back(Card(King, Diamond, 10));
 
 	m_cards.push_back(Card(Ace, Spade));
 	m_cards.push_back(Card(Two, Spade));
@@ -35,9 +35,9 @@ void Deck::init()
 	m_cards.push_back(Card(Eight, Spade));
 	m_cards.push_back(Card(Nine, Spade));
 	m_cards.push_back(Card(Ten, Spade));
-	m_cards.push_back(Card(Jack, Spade));
-	m_cards.push_back(Card(Queen, Spade));
-	m_cards.push_back(Card(King, Spade));
+	m_cards.push_back(Card(Jack, Spade, 10));
+	m_cards.push_back(Card(Queen, Spade, 10));
+	m_cards.push_back(Card(King, Spade, 10));
 
 	m_cards.push_back(Card(Ace, Heart));
 	m_cards.push_back(Card(Two, Heart));
@@ -49,9 +49,9 @@ void Deck::init()
 	m_cards.push_back(Card(Eight, Heart));
 	m_cards.push_back(Card(Nine, Heart));
 	m_cards.push_back(Card(Ten, Heart));
-	m_cards.push_back(Card(Jack, Heart));
-	m_cards.push_back(Card(Queen, Heart));
-	m_cards.push_back(Card(King, Heart));
+	m_cards.push_back(Card(Jack, Heart, 10));
+	m_cards.push_back(Card(Queen, Heart, 10));
+	m_cards.push_back(Card(King, Heart, 10));
 
 	m_cards.push_back(Card(Ace, Club));
 	m_cards.push_back(Card(Two, Club));
@@ -63,7 +63,7 @@ void Deck::init()
 	m_cards.push_back(Card(Eight, Club));
 	m_cards.push_back(Card(Nine, Club));
 	m_cards.push_back(Card(Ten, Club));
-	m_cards.push_back(Card(Jack, Club));
-	m_cards.push_back(Card(Queen, Club));
-	m_cards.push_back(Card(King, Club));
+	m_cards.push_back(Card(Jack, Club, 10));
+	m_cards.push_back(Card(Queen, Club, 10));
+	m_cards.push_back(Card(King, Club, 10));
 }
